@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
-import classnames from "classnames";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Register extends Component {
   constructor() {
@@ -17,6 +20,18 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -31,11 +46,7 @@ class Register extends Component {
       passwordConfirmation: this.state.passwordConfirmation
     };
 
-    axios
-      .post("/api/users/register", newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
-    //   .catch(err => console.log(err.response.data));
+    this.props.registerUser(newUser, this.props.history);
   }
 
   render() {
@@ -51,82 +62,48 @@ class Register extends Component {
           <div className="sign-up">
             <h3>Register</h3>
             <form onSubmit={this.onSubmit}>
-              <div className="form-field">
-                <label htmlFor="name">Name</label>
-                <input
-                  className={classnames({
-                    "invalid-field": errors.name
-                  })}
-                  value={this.state.name}
-                  onChange={this.onChange}
-                  type="text"
-                  name="name"
-                  id="name"
-                  size="50"
-                  autoComplete="off"
-                />
-              </div>
-              {errors.name && (
-                <div className="error-message">{errors.name}</div>
-              )}
-              <div className="form-field">
-                <label htmlFor="email">Email</label>
-                <input
-                  className={classnames({
-                    "invalid-field": errors.email
-                  })}
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  type="text"
-                  name="email"
-                  id="email"
-                  size="50"
-                  autoComplete="off"
-                />
-              </div>
-              {errors.email && (
-                <div className="error-message">{errors.email}</div>
-              )}
-              <div className="form-field">
-                <label htmlFor="password">Password</label>
-                <input
-                  className={classnames({
-                    "invalid-field": errors.password
-                  })}
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  type="password"
-                  name="password"
-                  id="password"
-                  size="50"
-                />
-              </div>
-              {errors.password && (
-                <div className="error-message">{errors.password}</div>
-              )}
-              <div className="form-field">
-                <label htmlFor="passwordConfirmation" className="labelka">
-                  Confirm Password
-                </label>
-                <input
-                  className={classnames({
-                    "invalid-field": errors.passwordConfirmation
-                  })}
-                  value={this.state.passwordConfirmation}
-                  onChange={this.onChange}
-                  type="password"
-                  name="passwordConfirmation"
-                  id="passwordConfirmation"
-                  size="50"
-                />
-              </div>
-              {errors.passwordConfirmation && (
-                <div className="error-message">
-                  {errors.passwordConfirmation}
-                </div>
-              )}
+              <TextFieldGroup
+                htmlFor="name"
+                labelText="Name"
+                value={this.state.name}
+                onChange={this.onChange}
+                type="text"
+                name="name"
+                error={errors.name}
+              />
+
+              <TextFieldGroup
+                htmlFor="email"
+                labelText="Email"
+                value={this.state.email}
+                onChange={this.onChange}
+                type="email"
+                name="email"
+                error={errors.email}
+              />
+
+              <TextFieldGroup
+                htmlFor="password"
+                labelText="Password"
+                value={this.state.password}
+                onChange={this.onChange}
+                type="password"
+                name="password"
+                error={errors.password}
+              />
+
+              <TextFieldGroup
+                htmlFor="passwordConfirmation"
+                labelText="Confirm Password"
+                value={this.state.passwordConfirmation}
+                onChange={this.onChange}
+                type="password"
+                name="passwordConfirmation"
+                error={errors.passwordConfirmation}
+              />
+
               <div id="form-submit">
-                <input type="submit" value="Register" />
+                <input type="submit" formNoValidate value="Register" />
               </div>
             </form>
           </div>
@@ -136,4 +113,18 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));

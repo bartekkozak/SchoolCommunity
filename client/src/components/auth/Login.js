@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
 import { Link } from "react-router-dom";
-import classnames from "classnames";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {
   constructor() {
@@ -19,13 +22,31 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
-    const user = {
+    const userData = {
       email: this.state.email,
       password: this.state.password
     };
+
+    this.props.loginUser(userData);
   }
 
   render() {
@@ -43,45 +64,28 @@ class Login extends Component {
             <h3>Login</h3>
 
             <form onSubmit={this.onSubmit}>
-              <div className="form-field">
-                <label htmlFor="email">Email</label>
-                <input
-                  className={classnames({
-                    "invalid-field": errors.email
-                  })}
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  type="text"
-                  name="email"
-                  id="email"
-                  size="50"
-                  autoComplete="off"
-                />
-              </div>
-              {errors.email && (
-                <div className="error-message">{errors.email}</div>
-              )}
+              <TextFieldGroup
+                htmlFor="email"
+                labelText="Email"
+                value={this.state.email}
+                onChange={this.onChange}
+                type="email"
+                name="email"
+                error={errors.email}
+              />
 
-              <div className="form-field">
-                <label htmlFor="password">Password</label>
-                <input
-                  className={classnames({
-                    "invalid-field": errors.password
-                  })}
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  type="password"
-                  name="password"
-                  id="password"
-                  size="50"
-                />
-              </div>
-              {errors.password && (
-                <div className="error-message">{errors.password}</div>
-              )}
+              <TextFieldGroup
+                htmlFor="password"
+                labelText="Password"
+                value={this.state.password}
+                onChange={this.onChange}
+                type="password"
+                name="password"
+                error={errors.password}
+              />
 
               <div id="form-submit">
-                <input type="submit" value="Login" />
+                <input type="submit" formNoValidate value="Login" />
               </div>
             </form>
 
@@ -98,4 +102,18 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);

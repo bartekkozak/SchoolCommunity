@@ -10,6 +10,10 @@
   font-family: "Concert One", cursive;
 }
 
+a {
+  text-decoration: none;
+}
+
 .navigation-wrapper a {
   text-decoration: none;
   color: #3e1e00;
@@ -20,7 +24,7 @@
   transition: 0.3s;
 }
 
-.navigation-wrapper a::after {
+.navigation-wrapper .navigation-item::after {
   content: "";
   display: block;
   width: 0;
@@ -29,11 +33,11 @@
   background: #3e1e00;
   transition: width 0.3s;
 }
-.navigation-wrapper a:hover {
+.navigation-wrapper .navigation-item:hover {
   transform: scale(1.1);
 }
 
-.navigation-wrapper a:hover::after {
+.navigation-wrapper .navigation-item:hover::after {
   width: 100%;
 }
 
@@ -48,6 +52,10 @@ li {
   font-weight: 700;
   color: transparent;
   text-shadow: 4px 3px 2px rgba(160, 148, 132, 0.58);
+}
+
+.navigation {
+  display: flex;
 }
 
 .navigation-wrapper {
@@ -157,11 +165,16 @@ li {
 @media (min-width: 769px) {
   .navigation-items {
     display: flex !important;
+  }
+  .right-margin {
     margin-right: 80px;
   }
 }
 
 @media (max-width: 768px) {
+  .navigation {
+    flex-direction: column;
+  }
   .navigation-wrapper {
     flex-direction: column;
     padding: 0;
@@ -183,6 +196,12 @@ li {
     display: flex;
     margin-top: 8px;
     align-self: center;
+  }
+  .navigation-wrapper .navigation-item:hover::after {
+    width: 0;
+  }
+  .navigation-wrapper .navigation-item:hover {
+    transform: scale(1);
   }
 }
 
@@ -386,4 +405,201 @@ footer p {
   font-size: 14px;
   color: #ff0000;
   text-shadow: 4px 3px 2px rgba(18, 17, 16, 0.58);
+}
+
+.logout {
+  display: flex !important;
+  align-items: center;
+}
+
+.logout span {
+  align-self: flex-start;
+}
+
+.logout img {
+  width: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.dashboard {
+  min-height: 100vh;
+  display: flex;
+  padding-top: 238px;
+  background-image: url("./images/school-board.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-container {
+  width: 80%;
+  background-color: rgba(62, 30, 0, 0.47);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  height: 100%;
+  margin-bottom: 50px;
+  padding: 20px 40px 20px 40px;
+}
+
+p.dashboard-header {
+  font-family: "Chalk";
+  color: #efefef;
+  text-align: center;
+  font-size: 70px;
+  margin-bottom: 50px;
+}
+
+@keyframes anim {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.01);
+    text-shadow: 0 28px 50px rgba(0, 0, 0, 0.8);
+  }
+}
+
+p.load-content {
+  font-family: "Chalk";
+  color: #efefef;
+  text-align: left;
+  font-size: 50px;
+  width: 80%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: anim 0.6s infinite alternate ease-in-out;
+}
+
+p.dashboard-title,
+p.dashboard-text {
+  font-family: "Concert One", cursive;
+  color: #efefef;
+  text-align: left;
+  font-size: 30px;
+}
+
+.dashboard-name {
+  text-transform: capitalize;
+}
+
+.dashboard-container p:nth-child(1) {
+  padding: 30px 0 10px 0;
+}
+
+.button {
+  background-color: #000;
+  color: #fff;
+  outline: none;
+  max-width: 160px;
+  border-radius: 0.5em;
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.dashboard-button {
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+.create-profile,
+.education {
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 238px;
+  background-image: url("./images/school-board.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 80px;
+}
+
+p.create-profile-header,
+p.education-header {
+  font-family: "Chalk";
+  color: #efefef;
+  text-align: center;
+  font-size: 70px;
+  margin-bottom: 50px;
+}
+
+.create-profile-container,
+.education-container {
+  width: 80%;
+  background-color: rgba(62, 30, 0, 0.47);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  height: 100%;
+  margin-bottom: 50px;
+  padding: 20px 40px 20px 40px;
+  margin: auto;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+}
+
+.create-profile-container .form-field,
+.education-container .form-field {
+  width: 600px;
+}
+
+.create-profile-container select {
+  width: 100%;
+  height: 41px;
+}
+
+.create-profile-required {
+  padding-bottom: 50px;
+}
+
+.create-profile-button {
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+.icon-field input {
+  background: transparent;
+}
+
+.icon-field {
+  display: flex;
+  background: rgba(0, 0, 0, 0.33);
+  border-radius: 6px;
+}
+
+.fab {
+  width: 50px;
+  height: 100%;
+  font-size: 41px;
+}
+
+.icon-field input:focus + .fab {
+  background: red;
+}
+
+.dashboard-handle-link {
+  color: #efefef;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+input[type="date"]:disabled {
+  background: red;
 }
