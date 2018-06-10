@@ -3,7 +3,6 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 
 const TextAreaFieldGroup = ({
-  htmlFor,
   labelText,
   value,
   onChange,
@@ -14,7 +13,7 @@ const TextAreaFieldGroup = ({
   return (
     <div>
       <div className="form-field">
-        <label htmlFor={htmlFor}>{labelText}</label>
+        <label>{labelText}</label>
         <textarea
           className={classnames({
             "invalid-field": error
@@ -22,7 +21,6 @@ const TextAreaFieldGroup = ({
           value={value}
           onChange={onChange}
           name={name}
-          id={htmlFor}
           autoComplete="off"
         />
       </div>
@@ -33,7 +31,6 @@ const TextAreaFieldGroup = ({
 };
 
 TextAreaFieldGroup.propTypes = {
-  htmlFor: PropTypes.string.isRequired,
   labelText: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,

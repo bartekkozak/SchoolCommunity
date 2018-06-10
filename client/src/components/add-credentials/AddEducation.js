@@ -67,7 +67,6 @@ class AddEducation extends Component {
         <p className="education-header">Add Education</p>
         <div className="education-container">
           <Link to="/dashboard">
-            {" "}
             <button className="button education-button">Previous</button>
           </Link>
           <p>TEST</p>

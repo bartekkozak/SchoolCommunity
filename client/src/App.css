@@ -517,20 +517,24 @@ p.dashboard-text {
 .create-profile,
 .education,
 .profiles,
-.profile {
+.profile,
+.posts,
+.post {
   min-height: 100vh;
   width: 100%;
   padding-top: 238px;
   background-image: url("./images/school-board.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   padding-bottom: 80px;
 }
 
 p.create-profile-header,
 p.education-header,
 p.profiles-header,
-p.profile-header {
+p.profile-header,
+p.posts-header,
+p.post-header {
   font-family: "Chalk";
   color: #efefef;
   text-align: center;
@@ -541,7 +545,9 @@ p.profile-header {
 .create-profile-container,
 .education-container,
 .profiles-container,
-.profile-container {
+.profile-container,
+.posts-container,
+.post-container {
   width: 80%;
   background-color: rgba(62, 30, 0, 0.47);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -620,4 +626,8 @@ input[type="date"]:disabled {
 .education-table th {
   width: 200px;
   text-align: left;
+}
+
+.liked {
+  color: #3e1e00;
 }

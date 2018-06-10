@@ -18,6 +18,9 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navigation-items right-margin">
         <li className="navigation-item">
+          <Link to="/posts">Posts</Link>
+        </li>
+        <li className="navigation-item">
           <Link to="/dashboard">Dashboard</Link>
         </li>
         <li className="navigation-item">
@@ -57,10 +60,6 @@ class Navbar extends Component {
           <ul className="navigation-items">
             <li className="navigation-item">
               <Link to="/profiles">Profiles</Link>
-            </li>
-
-            <li className="navigation-item">
-              <Link to="/posts">Posts</Link>
             </li>
           </ul>
           {isAuthenticated ? authLinks : questLinks}
