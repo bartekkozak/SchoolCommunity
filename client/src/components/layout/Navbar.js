@@ -56,11 +56,11 @@ class Navbar extends Component {
         <nav className="navigation">
           <ul className="navigation-items">
             <li className="navigation-item">
-              <Link to="/">Home</Link>
+              <Link to="/profiles">Profiles</Link>
             </li>
 
             <li className="navigation-item">
-              <Link to="/">Posts</Link>
+              <Link to="/posts">Posts</Link>
             </li>
           </ul>
           {isAuthenticated ? authLinks : questLinks}

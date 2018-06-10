@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
@@ -87,6 +87,7 @@ class CreateProfile extends Component {
       location: this.state.location,
       status: this.state.status,
       skills: this.state.skills,
+      bio: this.state.bio,
       facebook: this.state.facebook,
       youtube: this.state.youtube,
       instagram: this.state.instagram
@@ -149,7 +150,10 @@ class CreateProfile extends Component {
         <p className="create-profile-header">Edit Your Profile</p>
         <div className="create-profile-container">
           <form onSubmit={this.onSubmit}>
-            <p className="create-profile-title">TEST</p>
+            <Link to="/dashboard">
+              {" "}
+              <button className="button education-button">Previous</button>
+            </Link>
             <p className="create-profile-required">* = required fields</p>
             <TextFieldGroup
               labelText="* Profile Handle"
