@@ -53,7 +53,11 @@ class Navbar extends Component {
             <span />
           </div>
           <div className="logo">
-            <Link to="/">School Community</Link>
+            <Link to="/">
+              <p>
+                <span>School Community</span>
+              </p>
+            </Link>
           </div>
         </div>
         <nav className="navigation">

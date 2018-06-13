@@ -17,11 +17,18 @@ class Profiles extends Component {
       profileItems = <p className="load-content">Loading...</p>;
     } else {
       if (profiles.length > 0) {
+        profiles.reverse();
+
         profileItems = (
           <div className="profiles-container">
-            {profiles.map(profile => (
-              <ProfileItem key={profile._id} profile={profile} />
-            ))}
+            <p className="create-profile-text">
+              become a member of our community
+            </p>
+            <div className="sc-members">
+              {profiles.map(profile => (
+                <ProfileItem key={profile._id} profile={profile} />
+              ))}
+            </div>
           </div>
         );
       } else {

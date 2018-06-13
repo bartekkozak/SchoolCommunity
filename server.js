@@ -9,7 +9,7 @@ const posts = require("./routes/api/posts");
 
 const app = express();
 
-// Body parser middleware
+// Body Parser Middleware
 app.use(
   bodyParser.urlencoded({
     extended: false
@@ -17,7 +17,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
-// DB Config
+// Database Configuration
 const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
@@ -26,7 +26,7 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
-// Passport middleware
+// Passport Middleware
 app.use(passport.initialize());
 
 // Passport Config

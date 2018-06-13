@@ -11,7 +11,7 @@ class ProfileAbout extends Component {
     const lastName = profile.user.name.trim().split(" ")[1];
 
     //
-    const skills = profile.skills.map((skill, index) => (
+    const hobbies = profile.hobbies.map((skill, index) => (
       <div key={index}>
         <i className="fa fa-check" />
         {skill}
@@ -21,6 +21,25 @@ class ProfileAbout extends Component {
     return (
       <div>
         <h1>First name: {firstName} </h1>
+        <div className="profile-book">
+          <div className="book-front">Skills</div>
+          <div className="book-details">Opis skilli</div>
+        </div>
+        <p>
+          {isEmpty(profile.favouritesubject) ? null : (
+            <span>Favourite Subject: {profile.favouritesubject}</span>
+          )}{" "}
+        </p>
+        <p>
+          {isEmpty(profile.dislikedsubject) ? null : (
+            <span>Least Favourite Subject: {profile.dislikedsubject}</span>
+          )}{" "}
+        </p>
+        <p>
+          {isEmpty(profile.favouriteschool) ? null : (
+            <span>Favourite School: {profile.favouriteschool}</span>
+          )}{" "}
+        </p>
         {isEmpty(lastName) ? null : <h2>Last name: {lastName}</h2>}
         <p className="lead">
           {isEmpty(profile.bio) ? (
@@ -29,7 +48,7 @@ class ProfileAbout extends Component {
             <span>{profile.bio}</span>
           )}
         </p>
-        {skills}
+        {hobbies}
       </div>
     );
   }

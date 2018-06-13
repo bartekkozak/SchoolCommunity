@@ -13,14 +13,26 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
 
-// @route GET api/users/test
-// @description Tests users route
-// @access Public route
-router.get("/test", (req, res) =>
-  res.json({
-    msg: "Users Works"
-  })
+// START OF GET REQUESTS
+
+// @route GET api/users/current
+// @description Return current user
+// @access Private route
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email
+    });
+  }
 );
+
+// END OF GET REQUESTS
+
+// START OF POST REQUESTS
 
 // @route POST api/users/register
 // @description Register user
@@ -128,19 +140,6 @@ router.post("/login", (req, res) => {
   });
 });
 
-// @route GET api/users/current
-// @description Return current user
-// @access Private
-router.get(
-  "/current",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.json({
-      id: req.user.id,
-      name: req.user.name,
-      email: req.user.email
-    });
-  }
-);
+// END OF POST REQUESTS
 
 module.exports = router;

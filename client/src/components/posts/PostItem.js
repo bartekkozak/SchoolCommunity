@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import classnames from "classnames";
 import { Link } from "react-router-dom";
 import { deletePost, addLike, removeLike } from "../../actions/postActions";
 
@@ -18,65 +17,57 @@ class PostItem extends Component {
     this.props.removeLike(id);
   }
 
-  findUserLike(likes) {
-    const { auth } = this.props;
-    if (likes.filter(like => like.user === auth.user.id).length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   render() {
     const { post, auth, showActions } = this.props;
 
     return (
       <div className="post-item">
         <div>
-          <img src={post.avatar} alt="" />
-          <p>Name: {post.name} </p>
-          <p>Text: {post.text} </p>
-          <br />
-          {showActions ? (
-            <span>
-              <button
-                onClick={this.onLikeClick.bind(this, post._id)}
-                type="button"
-                className="button"
-              >
-                <i
-                  className={classnames("fas fa-thumbs-up", {
-                    liked: this.findUserLike(post.likes)
-                  })}
-                />
-                <span>{post.likes.length}</span>
-              </button>
-              <button
-                onClick={this.onUnlikeClick.bind(this, post._id)}
-                type="button"
-                className="button"
-              >
-                <i className="fas fa-thumbs-down" />
-              </button>
-              <br />
-              <br />
-
-              <Link to={`/post/${post._id}`}>
-                <button className="button">Comments</button>
-              </Link>
-
-              {post.user === auth.user.id ? (
+          <div className="post-content">
+            <div className="post-lr-wrapper">
+              <div className="post-left">
+                <img src={post.avatar} alt="" />
+                <p>{post.name} </p>
+              </div>
+              <div className="post-right">
+                <p>{post.text} </p>
+              </div>
+            </div>
+            {showActions ? (
+              <div className="post-buttons">
                 <button
-                  onClick={this.onDeleteClick.bind(this, post._id)}
+                  onClick={this.onLikeClick.bind(this, post._id)}
                   type="button"
-                  className="button"
+                  className="button button-like"
                 >
-                  {" "}
-                  <i className="fas fa-times" /> Delete
+                  <i className="fas fa-thumbs-up" />
+                  <span> {post.likes.length}</span>
                 </button>
-              ) : null}
-            </span>
-          ) : null}
+                <button
+                  onClick={this.onUnlikeClick.bind(this, post._id)}
+                  type="button"
+                  className="button button-dislike"
+                >
+                  <i className="fas fa-thumbs-down" />
+                </button>
+
+                <Link to={`/post/${post._id}`}>
+                  <button className="button">Comments</button>
+                </Link>
+
+                {post.user === auth.user.id ? (
+                  <button
+                    onClick={this.onDeleteClick.bind(this, post._id)}
+                    type="button"
+                    className="button remove-button"
+                  >
+                    {" "}
+                    <i class="fas fa-trash-alt" />
+                  </button>
+                ) : null}
+              </div>
+            ) : null}
+          </div>
         </div>
       </div>
     );

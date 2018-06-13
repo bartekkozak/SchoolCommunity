@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter, Link } from "react-router-dom";
-import TextFieldGroup from "../common/TextFieldGroup";
-import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
-import InputGroup from "../common/InputGroup";
-import SelectListGroup from "../common/SelectListGroup";
+import TextFieldGroup from "../fields/TextFieldGroup";
+import TextAreaFieldGroup from "../fields/TextAreaFieldGroup";
+import InputGroup from "../fields/InputGroup";
+import SelectListGroup from "../fields/SelectListGroup";
 import { createProfile, getCurrentProfile } from "../../actions/profileActions";
 import isEmpty from "../../validation/is-empty";
 
@@ -15,11 +15,11 @@ class CreateProfile extends Component {
     this.state = {
       displaySocialInputs: false,
       handle: "",
-      company: "",
-      website: "",
-      location: "",
+      favouritesubject: "",
+      dislikedsubject: "",
+      favouriteschool: "",
       status: "",
-      skills: "",
+      hobbies: "",
       bio: "",
       facebook: "",
       youtube: "",
@@ -43,13 +43,19 @@ class CreateProfile extends Component {
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile;
 
-      //   bring skills array back to CSV
-      const skillsCSV = profile.skills.join(",");
+      //   bring hobbies array back to CSV
+      const hobbiesCSV = profile.hobbies.join(",");
 
       // If profile field does not exist, make empty string
-      profile.company = !isEmpty(profile.company) ? profile.company : "";
-      profile.website = !isEmpty(profile.website) ? profile.website : "";
-      profile.location = !isEmpty(profile.location) ? profile.location : "";
+      profile.favouritesubject = !isEmpty(profile.favouritesubject)
+        ? profile.favouritesubject
+        : "";
+      profile.dislikedsubject = !isEmpty(profile.dislikedsubject)
+        ? profile.dislikedsubject
+        : "";
+      profile.favouriteschool = !isEmpty(profile.favouriteschool)
+        ? profile.favouriteschool
+        : "";
       profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
       profile.social = !isEmpty(profile.social) ? profile.social : {};
       profile.facebook = !isEmpty(profile.social.facebook)
@@ -65,11 +71,11 @@ class CreateProfile extends Component {
       //  Set component field state
       this.setState({
         handle: profile.handle,
-        company: profile.company,
-        website: profile.website,
-        location: profile.location,
+        favouritesubject: profile.favouritesubject,
+        dislikedsubject: profile.dislikedsubject,
+        favouriteschool: profile.favouriteschool,
         status: profile.status,
-        skills: skillsCSV,
+        hobbies: hobbiesCSV,
         bio: profile.bio,
         facebook: profile.facebook,
         youtube: profile.youtube,
@@ -82,11 +88,11 @@ class CreateProfile extends Component {
     e.preventDefault();
     const profileData = {
       handle: this.state.handle,
-      company: this.state.company,
-      website: this.state.website,
-      location: this.state.location,
+      favouritesubject: this.state.favouritesubject,
+      dislikedsubject: this.state.dislikedsubject,
+      favouriteschool: this.state.favouriteschool,
       status: this.state.status,
-      skills: this.state.skills,
+      hobbies: this.state.hobbies,
       bio: this.state.bio,
       facebook: this.state.facebook,
       youtube: this.state.youtube,
@@ -136,12 +142,11 @@ class CreateProfile extends Component {
     }
 
     const options = [
-      { label: "Select Professional Status", value: 0 },
       {
-        label: "Nauczyciel",
-        value: "Nauczyciel"
+        label: "Teacher",
+        value: "Teacher"
       },
-      { label: "Uczeń", value: "Uczeń" },
+      { label: "Student", value: "Student" },
       { label: "Other", value: "Other" }
     ];
 
@@ -150,17 +155,21 @@ class CreateProfile extends Component {
         <p className="create-profile-header">Edit Your Profile</p>
         <div className="create-profile-container">
           <form onSubmit={this.onSubmit}>
+            <p className="create-profile-text">
+              To edit your profile, fill in the required fields
+            </p>
+            <p className="create-profile-required">* = Required fields</p>
             <Link to="/dashboard">
               {" "}
-              <button className="button education-button">Previous</button>
+              <button className="button previous-button">Previous</button>
             </Link>
-            <p className="create-profile-required">* = required fields</p>
             <TextFieldGroup
               labelText="* Profile Handle"
               name="handle"
               value={this.state.handle}
               onChange={this.onChange}
               error={errors.handle}
+              disabled
             />
             <SelectListGroup
               labelText="* Status"
@@ -171,55 +180,57 @@ class CreateProfile extends Component {
               error={errors.status}
             />
             <TextFieldGroup
-              labelText="Company"
-              name="company"
-              value={this.state.company}
+              labelText="Favourite Subject"
+              name="favouritesubject"
+              value={this.state.favouritesubject}
               onChange={this.onChange}
-              error={errors.company}
+              error={errors.favouritesubject}
             />
             <TextFieldGroup
-              labelText="Website"
-              name="website"
-              value={this.state.website}
+              labelText="Least Favourite Subject"
+              name="dislikedsubject"
+              value={this.state.dislikedsubject}
               onChange={this.onChange}
-              error={errors.website}
+              error={errors.dislikedsubject}
             />
             <TextFieldGroup
-              labelText="Location"
-              name="location"
-              value={this.state.location}
+              labelText="Favourite School"
+              name="favouriteschool"
+              value={this.state.favouriteschool}
               onChange={this.onChange}
-              error={errors.location}
+              error={errors.favouriteschool}
             />
             <TextFieldGroup
-              labelText="Skills"
-              name="skills"
-              value={this.state.skills}
+              labelText="Hobbies"
+              name="hobbies"
+              value={this.state.hobbies}
               onChange={this.onChange}
-              error={errors.skills}
+              error={errors.hobbies}
               info="Please use comma separated values (eg. sport, music, fashion)"
             />
             <TextAreaFieldGroup
-              labelText="Bio"
+              labelText="Biography"
               name="bio"
               value={this.state.bio}
               onChange={this.onChange}
               error={errors.bio}
             />
-            <button
-              className="button create-profile-button"
-              type="button"
-              onClick={() => {
-                this.setState(prevState => ({
-                  displaySocialInputs: !displaySocialInputs
-                }));
-              }}
-            >
-              {" "}
-              Add Social Media{" "}
-            </button>
-            {socialInputs}
-            <input type="submit" value="Submit" className="button" />
+            <div className="create-profile-buttons">
+              <button
+                className="button create-profile-button"
+                type="button"
+                onClick={() => {
+                  this.setState(prevState => ({
+                    displaySocialInputs: !displaySocialInputs
+                  }));
+                }}
+              >
+                {" "}
+                Add Social Media{" "}
+              </button>
+              {socialInputs}
+              <input type="submit" value="Submit" className="button" />
+            </div>
           </form>
         </div>
       </div>

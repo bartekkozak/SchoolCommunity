@@ -23,14 +23,17 @@ class Profile extends Component {
       profileContent = <p className="load-content">Loading...</p>;
     } else {
       profileContent = (
-        <div>
-          <Link to="/profiles">
-            {" "}
-            <button className="button">Prev</button>{" "}
-          </Link>
-          <ProfileHeader profile={profile} />
-          <ProfileAbout profile={profile} />
-          <ProfileCreds education={profile.education} />
+        <div className="profile-container">
+          <p className="create-profile-text">{profile.status}</p>
+          <div className="profile-details">
+            <Link to="/profiles">
+              {" "}
+              <button className="button">Prev</button>{" "}
+            </Link>
+            <ProfileHeader profile={profile} />
+            <ProfileAbout profile={profile} />
+            <ProfileCreds education={profile.education} />
+          </div>
         </div>
       );
       profileName = (
@@ -42,8 +45,8 @@ class Profile extends Component {
 
     return (
       <div className="profile">
-        <p className="profile-header">TO PROFIL {profileName}</p>
-        <div className="profile-container">{profileContent}</div>
+        <p className="profile-header">{profileName}</p>
+        {profileContent}
       </div>
     );
   }

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const ProfileActions = () => {
   return (
-    <div>
+    <div className="dashboard-buttons">
       <Link to="/edit-profile">
-        <button className="button">Edit Profile</button>
+        <button className="button edit-profile-button">Edit Profile</button>
       </Link>
       <Link to="/add-education">
         <button className="button">Add Education</button>

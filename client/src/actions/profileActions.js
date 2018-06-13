@@ -5,7 +5,8 @@ import {
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
   SET_CURRENT_USER,
-  GET_PROFILES
+  GET_PROFILES,
+  CLEAR_ERRORS
 } from "./types";
 
 // get current profile
@@ -31,6 +32,7 @@ export const getCurrentProfile = () => dispatch => {
 // Create Profile
 
 export const createProfile = (profileData, history) => dispatch => {
+  dispatch(clearErrors());
   axios
     .post("/api/profile", profileData)
     .then(res => {
@@ -153,4 +155,10 @@ export const getProfileByHandle = handle => dispatch => {
         payload: null
       });
     });
+};
+
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS
+  };
 };

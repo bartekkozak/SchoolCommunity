@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
+import TextAreaFieldGroup from "../fields/TextAreaFieldGroup";
 import { addPost } from "../../actions/postActions";
 
 class PostForm extends Component {
@@ -47,7 +47,9 @@ class PostForm extends Component {
 
     return (
       <div>
-        <div>Say something...</div>
+        <p className="create-profile-text">
+          Say Hello to other Users and write a Post
+        </p>
 
         <form onSubmit={this.onSubmit}>
           <TextAreaFieldGroup
@@ -57,8 +59,9 @@ class PostForm extends Component {
             onChange={this.onChange}
             error={errors.text}
           />
-
-          <input type="submit" value="Submit" className="button" />
+          <div className="create-profile-buttons">
+            <input type="submit" value="Submit" className="button" />
+          </div>
         </form>
       </div>
     );

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import TextFieldGroup from "../common/TextFieldGroup";
-import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
-import InputGroup from "../common/InputGroup";
-import SelectListGroup from "../common/SelectListGroup";
+import TextFieldGroup from "../fields/TextFieldGroup";
+import TextAreaFieldGroup from "../fields/TextAreaFieldGroup";
+import InputGroup from "../fields/InputGroup";
+import SelectListGroup from "../fields/SelectListGroup";
 import { createProfile } from "../../actions/profileActions";
 
 class CreateProfile extends Component {
@@ -14,11 +14,11 @@ class CreateProfile extends Component {
     this.state = {
       displaySocialInputs: false,
       handle: "",
-      company: "",
-      website: "",
-      location: "",
+      favouritesubject: "",
+      dislikedsubject: "",
+      favouriteschool: "",
       status: "",
-      skills: "",
+      hobbies: "",
       bio: "",
       facebook: "",
       youtube: "",
@@ -40,11 +40,11 @@ class CreateProfile extends Component {
     e.preventDefault();
     const profileData = {
       handle: this.state.handle,
-      company: this.state.company,
-      website: this.state.website,
-      location: this.state.location,
+      favouritesubject: this.state.favouritesubject,
+      dislikedsubject: this.state.dislikedsubject,
+      favouriteschool: this.state.favouriteschool,
       status: this.state.status,
-      skills: this.state.skills,
+      hobbies: this.state.hobbies,
       bio: this.state.bio,
       facebook: this.state.facebook,
       youtube: this.state.youtube,
@@ -94,12 +94,12 @@ class CreateProfile extends Component {
     }
 
     const options = [
-      { label: "Select Professional Status", value: 0 },
+      { label: "Select Your Status", value: 0 },
       {
-        label: "Nauczyciel",
-        value: "Nauczyciel"
+        label: "Teacher",
+        value: "Teacher"
       },
-      { label: "Uczeń", value: "Uczeń" },
+      { label: "Student", value: "Student" },
       { label: "Other", value: "Other" }
     ];
 
@@ -108,8 +108,10 @@ class CreateProfile extends Component {
         <p className="create-profile-header">Create Your Profile</p>
         <div className="create-profile-container">
           <form onSubmit={this.onSubmit}>
-            <p className="create-profile-title">TEST</p>
-            <p className="create-profile-required">* = required fields</p>
+            <p className="create-profile-text">
+              To create your profile, fill in the required fields
+            </p>
+            <p className="create-profile-required">* = Required fields</p>
             <TextFieldGroup
               labelText="* Profile Handle"
               name="handle"
@@ -126,55 +128,57 @@ class CreateProfile extends Component {
               error={errors.status}
             />
             <TextFieldGroup
-              labelText="Company"
-              name="company"
-              value={this.state.company}
+              labelText="Favourite Subject"
+              name="favouritesubject"
+              value={this.state.favouritesubject}
               onChange={this.onChange}
-              error={errors.company}
+              error={errors.favouritesubject}
             />
             <TextFieldGroup
-              labelText="Website"
-              name="website"
-              value={this.state.website}
+              labelText="Least Favourite Subject"
+              name="dislikedsubject"
+              value={this.state.dislikedsubject}
               onChange={this.onChange}
-              error={errors.website}
+              error={errors.dislikedsubject}
             />
             <TextFieldGroup
-              labelText="Location"
-              name="location"
-              value={this.state.location}
+              labelText="Favourite School"
+              name="favouriteschool"
+              value={this.state.favouriteschool}
               onChange={this.onChange}
-              error={errors.location}
+              error={errors.favouriteschool}
             />
             <TextFieldGroup
-              labelText="Skills"
-              name="skills"
-              value={this.state.skills}
+              labelText="* Hobbies"
+              name="hobbies"
+              value={this.state.hobbies}
               onChange={this.onChange}
-              error={errors.skills}
+              error={errors.hobbies}
               info="Please use comma separated values (eg. sport, music, fashion)"
             />
             <TextAreaFieldGroup
-              labelText="Bio"
+              labelText="Biography"
               name="bio"
               value={this.state.bio}
               onChange={this.onChange}
               error={errors.bio}
             />
-            <button
-              className="button create-profile-button"
-              type="button"
-              onClick={() => {
-                this.setState(prevState => ({
-                  displaySocialInputs: !displaySocialInputs
-                }));
-              }}
-            >
-              {" "}
-              Add Social Media{" "}
-            </button>
-            {socialInputs}
-            <input type="submit" value="Submit" className="button" />
+            <div className="create-profile-buttons">
+              <button
+                className="button create-profile-button"
+                type="button"
+                onClick={() => {
+                  this.setState(prevState => ({
+                    displaySocialInputs: !displaySocialInputs
+                  }));
+                }}
+              >
+                {" "}
+                Add Social Media{" "}
+              </button>
+              {socialInputs}
+              <input type="submit" value="Submit" className="button" />
+            </div>
           </form>
         </div>
       </div>
