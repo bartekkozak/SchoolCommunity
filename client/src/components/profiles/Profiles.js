@@ -17,7 +17,9 @@ class Profiles extends Component {
       profileItems = <p className="load-content">Loading...</p>;
     } else {
       if (profiles.length > 0) {
-        profiles.reverse();
+        profiles.sort(function(a, b) {
+          return new Date(a.date) - new Date(b.date);
+        });
 
         profileItems = (
           <div className="profiles-container">

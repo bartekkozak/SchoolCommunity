@@ -35,22 +35,24 @@ class PostItem extends Component {
             </div>
             {showActions ? (
               <div className="post-buttons">
-                <button
-                  onClick={this.onLikeClick.bind(this, post._id)}
-                  type="button"
-                  className="button button-like"
-                >
-                  <i className="fas fa-thumbs-up" />
-                  <span> {post.likes.length}</span>
-                </button>
-                <button
-                  onClick={this.onUnlikeClick.bind(this, post._id)}
-                  type="button"
-                  className="button button-dislike"
-                >
-                  <i className="fas fa-thumbs-down" />
-                </button>
+                <span>
+                  <button
+                    onClick={this.onLikeClick.bind(this, post._id)}
+                    type="button"
+                    className="button button-like"
+                  >
+                    <i className="fas fa-thumbs-up" />
+                    <span> {post.likes.length}</span>
+                  </button>
 
+                  <button
+                    onClick={this.onUnlikeClick.bind(this, post._id)}
+                    type="button"
+                    className="button button-dislike"
+                  >
+                    <i className="fas fa-thumbs-down" />
+                  </button>
+                </span>
                 <Link to={`/post/${post._id}`}>
                   <button className="button">Comments</button>
                 </Link>

@@ -22,6 +22,7 @@ const TextAreaFieldGroup = ({
           onChange={onChange}
           name={name}
           autoComplete="off"
+          maxLength="300"
         />
       </div>
       {info && <div className="info">{info}</div>}

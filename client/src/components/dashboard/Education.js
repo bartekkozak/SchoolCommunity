@@ -36,17 +36,19 @@ class Education extends Component {
     return (
       <div className="education-credentials">
         <h4 className="education-table-title">Education Credentials</h4>
-        <table className="education-table">
-          <thead>
-            <tr>
-              <th>School</th>
-              <th>Degree</th>
-              <th>Years</th>
-              <th />
-            </tr>
-            {education}
-          </thead>
-        </table>
+        <div className="table-responsive">
+          <table className="education-table">
+            <thead>
+              <tr>
+                <th>School</th>
+                <th>Degree</th>
+                <th>Years</th>
+                <th />
+              </tr>
+              {education}
+            </thead>
+          </table>
+        </div>
       </div>
     );
   }

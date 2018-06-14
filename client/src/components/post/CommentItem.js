@@ -12,21 +12,49 @@ class CommentItem extends Component {
     const { comment, postId, auth } = this.props;
 
     return (
-      <div>
-        <img src={comment.avatar} alt="" />
-        <p>{comment.name}</p>
+      // <div className="post-item">
 
-        <p>{comment.text} </p>
+      //   <img src={comment.avatar} alt="" />
+      //   <p>{comment.name}</p>
 
-        {comment.user === auth.user.id ? (
-          <button
-            onClick={this.onDeleteClick.bind(this, postId, comment._id)}
-            type="button"
-            className="button"
-          >
-            <i className="fas fa-times" /> Delete
-          </button>
-        ) : null}
+      //   <p>{comment.text} </p>
+
+      //   {comment.user === auth.user.id ? (
+      //     <button
+      //       onClick={this.onDeleteClick.bind(this, postId, comment._id)}
+      //       type="button"
+      //       className="button"
+      //     >
+      //       <i className="fas fa-times" /> Delete
+      //     </button>
+      //   ) : null}
+      // </div>
+      <div className="post-item">
+        <div>
+          <div className="post-content comments">
+            <div className="post-lr-wrapper">
+              <div className="post-left">
+                <img src={comment.avatar} alt="" />
+                <p>{comment.name} </p>
+              </div>
+              <div className="post-right">
+                <p>{comment.text} </p>
+              </div>
+            </div>
+
+            {comment.user === auth.user.id ? (
+              <div className="comment-button">
+                <button
+                  onClick={this.onDeleteClick.bind(this, postId, comment._id)}
+                  type="button"
+                  className="button delete-button"
+                >
+                  <i className="fas fa-times" /> Delete
+                </button>
+              </div>
+            ) : null}
+          </div>
+        </div>
       </div>
     );
   }

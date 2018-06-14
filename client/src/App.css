@@ -430,10 +430,17 @@ footer p {
 
 @media (max-width: 1600px) {
   .school-board {
-    height: 130vh;
+    min-height: 130vh;
   }
   .board-text {
     max-width: 600px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .board-wrapper {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -442,10 +449,7 @@ footer p {
     height: 100%;
     padding-bottom: 100px;
   }
-  .board-wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
+
   .board-text {
     padding-top: 70px;
   }
@@ -469,6 +473,13 @@ footer p {
 @media (max-width: 400px) {
   .board-text p {
     font-size: 25px;
+  }
+  .education-table {
+    font-size: 10px;
+  }
+  .table-responsive .remove-button {
+    width: 26px;
+    font-size: 10px;
   }
 }
 
@@ -874,6 +885,10 @@ input.button {
   background: #a61313;
 }
 
+.dashboard-buttons button {
+  margin: 10px 10px;
+}
+
 .remove-button {
   background: #a61313;
   margin-top: 0;
@@ -1023,6 +1038,7 @@ input.button {
   box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5),
     0 20px 100px rgba(0, 0, 0, 0.5);
   transition: 1s;
+  margin: 20px 0;
 }
 
 .profile-book:hover {
@@ -1069,7 +1085,7 @@ input.button {
   align-items: center;
   font-size: 30px;
   color: #8f6815;
-  font-family: "Squada One", cursive;
+  text-align: center;
 }
 
 .profile-book:hover .book-front {
@@ -1087,4 +1103,174 @@ input.button {
   height: 100%;
   color: #8f6815;
   font-family: "Squada One", cursive;
+}
+
+.profile-book span {
+  color: #3e1e00;
+  font-size: 16px;
+}
+
+.profile-book p {
+  color: #8f6815;
+  padding: 5px 0;
+  overflow-wrap: break-word;
+}
+
+.books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.profile-book {
+  width: 44%;
+  cursor: pointer;
+}
+
+.profile-social-links .fab {
+  transition: 0.3s;
+}
+
+.profile-social-links .fab:hover {
+  transform: scale(1.15);
+}
+
+.lead p {
+  overflow-wrap: break-word;
+  line-height: 22px;
+}
+
+.table-responsive {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+@media (max-width: 1000px) {
+  .profile-item {
+    width: 50%;
+  }
+}
+
+@media (max-width: 800px) {
+  .posts p.create-profile-text {
+    width: 100%;
+  }
+  .post-item {
+    width: 100%;
+  }
+  .profile-container .create-profile-text {
+    width: 100%;
+  }
+  .profile-details {
+    width: 100%;
+  }
+  .books {
+    flex-direction: column;
+  }
+  .profile-book {
+    width: 100%;
+    max-width: 260px;
+    margin: 20px auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .post-lr-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .post-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  ..post-buttons span {
+    text-align: center;
+  }
+  .profile-item {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  p.create-profile-header,
+  p.education-header,
+  p.profiles-header,
+  p.profile-header,
+  p.posts-header,
+  p.post-header {
+    font-size: 42px;
+  }
+  p.create-profile-text {
+    font-size: 20px;
+  }
+  .create-profile-required,
+  label {
+    font-size: 15px;
+  }
+
+  .post-right p {
+    padding-left: 0;
+  }
+  .button {
+    width: 140px;
+    font-size: 14px;
+  }
+  .table-responsive {
+    display: block;
+  }
+  td,
+  th {
+    padding: 10px;
+  }
+  .education-table .button {
+    width: 35px;
+  }
+
+  .education-table .remove-button {
+    margin: 10px;
+    padding: 6px;
+  }
+  input,
+  textarea,
+  .create-profile-container select {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-left img {
+    width: 100%;
+  }
+  .post-content {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 400px) {
+  .post-content {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 360px) {
+  .post-content {
+    max-width: 200px;
+  }
+}
+
+.comments {
+  background-image: none;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.comment-button {
+  margin: auto;
+}
+
+.comments .post-right {
+  max-width: 300px;
+  overflow-wrap: break-word;
 }

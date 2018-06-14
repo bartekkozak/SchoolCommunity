@@ -48,8 +48,6 @@ class CommentForm extends Component {
 
     return (
       <div>
-        <div>Make a comment...</div>
-
         <form onSubmit={this.onSubmit}>
           <TextAreaFieldGroup
             labelText="Reply to post"
@@ -58,8 +56,9 @@ class CommentForm extends Component {
             onChange={this.onChange}
             error={errors.text}
           />
-
-          <input type="submit" value="Submit" className="button" />
+          <div className="create-profile-buttons">
+            <input type="submit" value="Submit" className="button" />
+          </div>
         </form>
       </div>
     );

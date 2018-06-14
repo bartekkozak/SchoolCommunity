@@ -21,19 +21,22 @@ class Post extends Component {
     } else {
       postContent = (
         <div className="post-container">
-          <Link to="/posts">
-            <button className="button">Previous</button>
-          </Link>
-          <PostItem post={post} showActions={false} />
-          <CommentForm postId={post._id} />
-          <CommentFeed postId={post._id} comments={post.comments} />
+          <div className="post-wrapper">
+            <p className="create-profile-text">Make a comment</p>
+            <Link to="/posts">
+              <button className="button">Previous</button>
+            </Link>
+            <PostItem post={post} showActions={false} />
+            <CommentForm postId={post._id} />
+            <CommentFeed postId={post._id} comments={post.comments} />
+          </div>
         </div>
       );
     }
 
     return (
       <div>
-        <div className="post">
+        <div className="post ">
           <p className="post-header">POST</p>
           {postContent}
         </div>

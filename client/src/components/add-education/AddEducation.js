@@ -4,7 +4,7 @@ import TextFieldGroup from "../fields/TextFieldGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addEducation } from "../../actions/profileActions";
-import TextAreaFieldGroup from "../fields/TextAreaFieldGroup";
+import classnames from "classnames";
 
 class AddEducation extends Component {
   constructor(props) {
@@ -129,13 +129,21 @@ class AddEducation extends Component {
               />
             </div>
 
-            <TextAreaFieldGroup
-              labelText="Describe your Education"
-              name="description"
-              value={this.state.description}
-              onChange={this.onChange}
-              error={errors.description}
-            />
+            <div>
+              <div className="form-field">
+                <label>Describe your Educa</label>
+                <textarea
+                  className={classnames({
+                    "invalid-field": errors.description
+                  })}
+                  value={this.state.description}
+                  onChange={this.onChange}
+                  name="description"
+                  autoComplete="off"
+                  maxLength="100"
+                />
+              </div>
+            </div>
             <div className="create-profile-buttons">
               <input type="submit" value="Submit" className="button" />
             </div>

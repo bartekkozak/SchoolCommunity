@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ProfileHeader from "./ProfileHeader";
 import ProfileAbout from "./ProfileAbout";
-import ProfileCreds from "./ProfileCreds";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -28,11 +27,10 @@ class Profile extends Component {
           <div className="profile-details">
             <Link to="/profiles">
               {" "}
-              <button className="button">Prev</button>{" "}
+              <button className="button">Previous</button>{" "}
             </Link>
             <ProfileHeader profile={profile} />
-            <ProfileAbout profile={profile} />
-            <ProfileCreds education={profile.education} />
+            <ProfileAbout education={profile.education} profile={profile} />
           </div>
         </div>
       );
