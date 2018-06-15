@@ -1186,7 +1186,7 @@ input.button {
     flex-direction: column;
     align-items: center;
   }
-  ..post-buttons span {
+  .post-buttons span {
     text-align: center;
   }
   .profile-item {
