@@ -18,7 +18,7 @@ class Profile extends Component {
     const { profile, loading } = this.props.profile;
     let profileContent, profileName;
 
-    if (profile === null || loading) {
+    if (profile === null || loading || Object.keys(profile).length === 0) {
       profileContent = <p className="load-content">Loading...</p>;
     } else {
       profileContent = (

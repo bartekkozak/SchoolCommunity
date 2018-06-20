@@ -17,6 +17,34 @@ class PostItem extends Component {
     this.props.removeLike(id);
   }
 
+  formatDate(date) {
+    let currentTime = new Date(date);
+    let year = currentTime.getFullYear();
+    let month = currentTime.getMonth() + 1;
+    let day = currentTime.getDate();
+    let hour = currentTime.getHours();
+    let minute = currentTime.getMinutes();
+    let second = currentTime.getSeconds();
+    if (month.toString().length === 1) {
+      month = "0" + month;
+    }
+    if (day.toString().length === 1) {
+      day = "0" + day;
+    }
+    if (hour.toString().length === 1) {
+      hour = "0" + hour;
+    }
+    if (minute.toString().length === 1) {
+      minute = "0" + minute;
+    }
+    if (second.toString().length === 1) {
+      second = "0" + second;
+    }
+    let dateTime =
+      year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
+    return dateTime;
+  }
+
   render() {
     const { post, auth, showActions } = this.props;
 
@@ -28,6 +56,9 @@ class PostItem extends Component {
               <div className="post-left">
                 <img src={post.avatar} alt="" />
                 <p>{post.name} </p>
+                <p className="current-date">
+                  POSTED: {this.formatDate(post.date)}
+                </p>
               </div>
               <div className="post-right">
                 <p>{post.text} </p>

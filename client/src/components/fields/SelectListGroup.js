@@ -46,7 +46,7 @@ SelectListGroup.propTypes = {
   name: PropTypes.string.isRequired,
   error: PropTypes.string,
   icon: PropTypes.string,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   options: PropTypes.array.isRequired
 };
 

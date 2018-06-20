@@ -449,10 +449,6 @@ footer p {
     height: 100%;
     padding-bottom: 100px;
   }
-
-  .board-text {
-    padding-top: 70px;
-  }
   .sign-up {
     margin-top: 120px;
   }
@@ -928,7 +924,7 @@ input.button {
   border: 6px double #8a6440;
 }
 
-.posts img {
+.post-left img {
   border-radius: 6px;
   box-shadow: 10px 4px 11px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
@@ -1147,6 +1143,36 @@ input.button {
   overflow-y: hidden;
 }
 
+.comments {
+  background-image: none;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.comment-button {
+  margin: auto;
+}
+
+.comments .post-right {
+  max-width: 300px;
+  overflow-wrap: break-word;
+}
+
+p.current-date {
+  font-family: "Concert One", cursive;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 2px;
+  margin-top: 10px;
+  border: 3px double #8a6440;
+  box-shadow: 10px 4px 11px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.profiles-not-auth {
+  background: rgba(0, 0, 0, 0.45);
+  padding: 5px;
+  text-align: center;
+}
+
 @media (max-width: 1000px) {
   .profile-item {
     width: 50%;
@@ -1259,18 +1285,4 @@ input.button {
   .post-content {
     max-width: 200px;
   }
-}
-
-.comments {
-  background-image: none;
-  background: rgba(0, 0, 0, 0.45);
-}
-
-.comment-button {
-  margin: auto;
-}
-
-.comments .post-right {
-  max-width: 300px;
-  overflow-wrap: break-word;
 }

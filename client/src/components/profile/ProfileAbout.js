@@ -62,14 +62,24 @@ class ProfileAbout extends Component {
             inside={
               <span>
                 <p>
-                  {isEmpty(profile.favouritesubject) ? null : (
+                  {isEmpty(profile.favouritesubject) ? (
+                    <span>
+                      Favourite Subject:{" "}
+                      <p>- {firstName} does not have a Favourite Subject</p>
+                    </span>
+                  ) : (
                     <span>
                       Favourite Subject: <p>- {profile.favouritesubject}</p>
                     </span>
                   )}{" "}
                 </p>
                 <p>
-                  {isEmpty(profile.dislikedsubject) ? null : (
+                  {isEmpty(profile.dislikedsubject) ? (
+                    <span>
+                      Least Favourite Subject:{" "}
+                      <p>- {firstName} does not have Least Favourite Subject</p>
+                    </span>
+                  ) : (
                     <span>
                       Least Favourite Subject:{" "}
                       <p>- {profile.dislikedsubject}</p>
@@ -77,7 +87,12 @@ class ProfileAbout extends Component {
                   )}{" "}
                 </p>
                 <p>
-                  {isEmpty(profile.favouriteschool) ? null : (
+                  {isEmpty(profile.favouriteschool) ? (
+                    <span>
+                      Favourite School:{" "}
+                      <p>- {firstName} does not have Favourite School</p>
+                    </span>
+                  ) : (
                     <span>
                       Favourite School: <p>- {profile.favouriteschool}</p>
                     </span>
@@ -99,7 +114,7 @@ class ProfileAbout extends Component {
               <div>
                 <p className="lead">
                   {isEmpty(profile.bio) ? (
-                    <span>{firstName} Does not have a bio</span>
+                    <span>{firstName} does not have a bio</span>
                   ) : (
                     <p>{profile.bio}</p>
                   )}

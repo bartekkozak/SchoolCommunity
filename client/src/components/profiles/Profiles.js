@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getProfiles } from "../../actions/profileActions";
 import ProfileItem from "./ProfileItem";
+import { Link } from "react-router-dom";
 
 class Profiles extends Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ class Profiles extends Component {
     } else {
       if (profiles.length > 0) {
         profiles.sort(function(a, b) {
-          return new Date(a.date) - new Date(b.date);
+          return new Date(b.date) - new Date(a.date);
         });
 
         profileItems = (
@@ -26,6 +27,13 @@ class Profiles extends Component {
             <p className="create-profile-text">
               become a member of our community
             </p>
+
+            {!this.props.auth.isAuthenticated && (
+              <Link to="/login">
+                <p className="profiles-not-auth">Login to see user's details</p>
+              </Link>
+            )}
+
             <div className="sc-members">
               {profiles.map(profile => (
                 <ProfileItem key={profile._id} profile={profile} />
@@ -53,11 +61,13 @@ class Profiles extends Component {
 
 Profiles.propTypes = {
   getProfiles: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile
+  profile: state.profile,
+  auth: state.auth
 });
 
 export default connect(
